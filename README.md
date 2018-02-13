@@ -27,7 +27,7 @@ A big thank you to packagecloud for supporting the open source community!
 
 ## License
 
-BSD
+GPLv3
 
 ## Author Information
 
