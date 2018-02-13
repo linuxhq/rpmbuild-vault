@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 
 Name:		vault
-Version:	0.5.2
+Version:	0.9.3
 Release:	1%{dist}
 Summary:	A tool for managing secrets
 Group:		Applications/Internet
@@ -59,5 +59,8 @@ rm -rf %{buildroot}
 %{_sysconfdir}/sysconfig/%{name}
 
 %changelog
-* Mon May 02 2016 Taylor Kimball <taylor@linuxhq.org> - 0.5.2-1
+* Mon Feb 12 2018 Taylor Kibmall <tkimball@linuxhq.org> - 0.9.3-1
+- Updated to 0.9.3
+
+* Mon May 02 2016 Taylor Kimball <tkimball@linuxhq.org> - 0.5.2-1
 - Initial build.
