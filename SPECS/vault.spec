@@ -70,7 +70,7 @@ rm -rf %{buildroot}
 %attr(-,root,root) %{_sysconfdir}/rc.d/init.d/%{name}
 %attr(-,root,root) %{_sysconfdir}/sysconfig/%{name}
 %if 0%{?el7}
-%attr(-,root,root) %{_prefix}/lib/tmpfiles.d/%{name}.conf}
+%attr(-,root,root) %{_prefix}/lib/tmpfiles.d/%{name}.conf
 %endif
 %config(noreplace) %{_sysconfdir}/%{name}/%{name}.*
 %{_localstatedir}/lib/%{name}
