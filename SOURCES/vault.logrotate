@@ -5,5 +5,5 @@
     compress
     copytruncate
     notifempty
-    create 600 root root
+    create 600 vault vault
 }
