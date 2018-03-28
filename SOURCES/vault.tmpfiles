@@ -1,0 +1,2 @@
+# vault runtime directory
+d /run/vault 0755 vault vault

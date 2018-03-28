@@ -5,7 +5,7 @@
 # description: HashiCorp's vault
 # processname: vault
 # config: /etc/sysconfig/vault
-# pidfile: /var/run/vault.pid
+# pidfile: /var/run/vault/vault.pid
 #
 ### BEGIN INIT INFO
 # Provides: vault
@@ -27,9 +27,10 @@ fi
 
 vault_bin=${VAULT_BIN-/usr/sbin/vault}
 vault_config_path=${VAULT_CONFIG_PATH-/etc/vault/vault.hcl}
-vault_log_file=${VAULT_LOG_FILE-/var/log/vault.log}
+vault_log_file=${VAULT_LOG_FILE-/var/log/vault/vault.log}
 vault_log_level=${VAULT_LOG_LEVEL-info}
-vault_pid_file=${VAULT_PID_FILE-/var/run/vault.pid}
+vault_pid_file=${VAULT_PID_FILE-/var/run/vault/vault.pid}
+vault_user=${VAULT_USER-vault}
 
 prog=vault
 RETVAL=0
@@ -38,9 +39,9 @@ start() {
   echo -n $"Starting $prog: "
   daemon \
     --pidfile=${vault_pid_file} \
-    "{ ${vault_bin} server -config ${vault_config_path} \
-                           -log-level ${vault_log_level} \
-                           >> ${vault_log_file} 2>&1 & }; echo \$! >| ${vault_pid_file}" 
+    --user=${vault_user} \
+    "{ ${vault_bin} server -config ${vault_config_path} -log-level ${vault_log_level} \
+                           ${VAULT_OPTS} >> ${vault_log_file} 2>&1 & }; echo \$! >| ${vault_pid_file}"
   RETVAL=$?
   [ $RETVAL = 0 ] && success
   [ $RETVAL != 0 ] && failure
