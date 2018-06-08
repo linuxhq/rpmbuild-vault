@@ -1,5 +1,8 @@
 # rpmbuild-vault
 
+[![Package Cloud](https://img.shields.io/badge/packagecloud-vault-blue.svg?style=flat)](https://packagecloud.io/linuxhq/vault)
+[![License](https://img.shields.io/badge/license-GPLv3-brightgreen.svg?style=flat)](COPYING)
+
 Create a vault RPM for RHEL/CentOS.
 
 ## Requirements
