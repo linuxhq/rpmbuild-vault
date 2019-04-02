@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<service>
+  <short>vault</short>
+  <description>Vault - A tool for managing secrets. Port used to handle incoming API requests from clients.</description>
+  <port protocol="tcp" port="8200"/>
+</service>
+<service>
+  <short>vault-cluster</short>
+  <description>Vault - A tool for managing secrets. Port used to handle request forwarding from other servers.</description>
+  <port protocol="tcp" port="8201"/>
+</service>
