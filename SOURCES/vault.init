@@ -57,6 +57,15 @@ stop() {
   echo
 }
 
+reload() {
+  echo -n $"Reloading $prog: "
+  killproc -p ${vault_pid_file} -HUP
+  RETVAL=$?
+  [ $RETVAL = 0 ] && success
+  [ $RETVAL != 0 ] && failure
+  echo
+}
+
 # See how we were called.
 case "$1" in
   start)
@@ -69,8 +78,11 @@ case "$1" in
     stop
     start
     ;;
+  reload)
+    reload
+    ;;
   *)
-    echo $"Usage: $prog {start|stop|restart}"
+    echo $"Usage: $prog {start|stop|restart|reload}"
     RETVAL=2
 esac
 
