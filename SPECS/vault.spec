@@ -121,6 +121,7 @@ rm -rf %{buildroot}
 %changelog
 * Mon Oct 14 2019 Elia Pinto <pinto.elia@gmail.com> - 1.2.1-1
 - Update to version 1.2.1
+
 * Tue Apr 02 2019 Giuseppe Ragusa <giuseppe.ragusa@fastmail.fm> - 1.1.0-1
 - Updated to 1.1.0
 - Modified spec to properly support CentOS/RHEL 7
