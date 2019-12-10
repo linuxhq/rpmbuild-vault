@@ -1,0 +1,20 @@
+# Path to vault binary
+VAULT_BIN=/usr/sbin/%{name}
+
+# Config path for vault
+VAULT_CONFIG_FILE=/etc/%{name}/%{name}.hcl
+
+# Log file for vault
+VAULT_LOG_FILE=/var/log/%{name}/%{name}.log
+
+# Log level for vault
+VAULT_LOG_LEVEL=info
+
+# Additional opts to pass to vault
+VAULT_OPTS=""
+
+# Pid file for vault
+VAULT_PID_FILE=/var/run/%{name}/%{name}.pid
+
+# User for vault to runas
+VAULT_USER=%{name}
