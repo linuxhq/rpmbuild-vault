@@ -1,9 +1,9 @@
-/var/log/vault/vault.log {
+/var/log/%{name}/%{name}.log {
     daily
     missingok
     rotate 7
     compress
     copytruncate
     notifempty
-    create 600 vault vault
+    create 600 %{name} %{name}
 }

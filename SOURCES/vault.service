@@ -5,8 +5,8 @@ Requires=network-online.target
 After=network-online.target
 
 [Service]
-User=vault
-Group=vault
+User=%{name}
+Group=%{name}
 ProtectSystem=full
 ProtectHome=read-only
 PrivateTmp=yes
@@ -16,8 +16,8 @@ AmbientCapabilities=CAP_IPC_LOCK
 Capabilities=CAP_IPC_LOCK+ep
 CapabilityBoundingSet=CAP_SYSLOG CAP_IPC_LOCK
 NoNewPrivileges=yes
-EnvironmentFile=/etc/sysconfig/vault
-ExecStart=/usr/sbin/vault server -config ${VAULT_CONFIG_PATH} -log-level ${VAULT_LOG_LEVEL} ${VAULT_OPTS}
+EnvironmentFile=/etc/sysconfig/%{name}
+ExecStart=/usr/sbin/%{name} %{mode} -config ${VAULT_CONFIG_FILE} -log-level ${VAULT_LOG_LEVEL} ${VAULT_OPTS}
 ExecReload=/bin/kill --signal HUP $MAINPID
 KillMode=process
 KillSignal=SIGINT
@@ -27,6 +27,8 @@ TimeoutStopSec=30
 StartLimitIntervalSec=60
 StartLimitBurst=3
 LimitNOFILE=65536
+LimitMEMLOCK=infinity
+LimitCORE=0
 
 [Install]
 WantedBy=multi-user.target

@@ -1,36 +1,36 @@
 #!/bin/sh
 #
-# vault: Start vault server
+# vault: Start vault
 # chkconfig: 235 20 80
-# description: HashiCorp's vault
-# processname: vault
-# config: /etc/sysconfig/vault
-# pidfile: /var/run/vault/vault.pid
+# description: HashiCorp's Vault
+# processname: %{name}
+# config: /etc/sysconfig/%{name}
+# pidfile: /var/run/%{name}/%{name}.pid
 #
 ### BEGIN INIT INFO
-# Provides: vault
+# Provides: %{name}
 # Required-Start: $local_fs $network 
-# Should-Start: vault
+# Should-Start: %{name}
 # Required-Stop:
 # Default-Start: 2 3 4 5
 # Default-Stop: 0 1 6
-# Short-Description: vault
-# Description: vault
+# Short-Description: %{name}
+# Description: %{name}
 ### END INIT INFO
 
 # Source function library.
 . /etc/rc.d/init.d/functions
 
-if [ -f /etc/sysconfig/vault ]; then
-    . /etc/sysconfig/vault
+if [ -f /etc/sysconfig/%{name} ]; then
+    . /etc/sysconfig/%{name}
 fi
 
-vault_bin=${VAULT_BIN-/usr/sbin/vault}
-vault_config_path=${VAULT_CONFIG_PATH-/etc/vault/vault.hcl}
-vault_log_file=${VAULT_LOG_FILE-/var/log/vault/vault.log}
+vault_bin=${VAULT_BIN-/usr/sbin/%{name}}
+vault_config_path=${VAULT_CONFIG_FILE-/etc/%{name}/%{name}.hcl}
+vault_log_file=${VAULT_LOG_FILE-/var/log/%{name}/%{name}.log}
 vault_log_level=${VAULT_LOG_LEVEL-info}
-vault_pid_file=${VAULT_PID_FILE-/var/run/vault/vault.pid}
-vault_user=${VAULT_USER-vault}
+vault_pid_file=${VAULT_PID_FILE-/var/run/%{name}/%{name}.pid}
+vault_user=${VAULT_USER-%{name}}
 
 prog=vault
 RETVAL=0
@@ -40,7 +40,7 @@ start() {
   daemon \
     --pidfile=${vault_pid_file} \
     --user=${vault_user} \
-    "{ ${vault_bin} server -config ${vault_config_path} -log-level ${vault_log_level} \
+    "{ ${vault_bin} %{mode} -config ${vault_config_path} -log-level ${vault_log_level} \
                            ${VAULT_OPTS} >> ${vault_log_file} 2>&1 & }; echo \$! >| ${vault_pid_file}"
   RETVAL=$?
   [ $RETVAL = 0 ] && success
